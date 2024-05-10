@@ -1,7 +1,5 @@
 smbus
 spidev
 gpiozero
-numpy
 pillow
 lgpio
-RPi.GPIO

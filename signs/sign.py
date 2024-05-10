@@ -19,7 +19,7 @@ try:
 
     logging.info ("***draw image")
     Himage2 = Image.new('RGB', (disp.width, disp.height), 0)  # 0: clear the frame
-    png = Image.open(os.path.join('pic', 'speed-80.png'))
+    png = Image.open(os.path.join('signs/pic', 'speed-80.png'))
     Himage2.paste(png.resize((disp.width-20, disp.height-20)), (10,10))
     Himage2=Himage2.rotate(0) 	
     disp.ShowImage(disp.getbuffer(Himage2)) 
