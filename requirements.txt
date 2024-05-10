@@ -2,4 +2,5 @@ smbus
 spidev
 gpiozero
 pillow
+flask
 # lgpio
