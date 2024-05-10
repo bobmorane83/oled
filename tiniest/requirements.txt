@@ -1,0 +1,5 @@
+smbus
+spidev
+gpiozero
+pillow
+# lgpio
