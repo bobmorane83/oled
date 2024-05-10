@@ -8,4 +8,4 @@ WORKDIR /opt/app
 COPY --from=build /usr/local/lib/python3.12 /usr/local/lib/python3.12
 COPY . .
 
-CMD ["python", "signs/sign.py"]
+CMD ["python", "signs/main.py"]
