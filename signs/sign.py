@@ -7,30 +7,37 @@ from waveshare_OLED import OLED_1in5_rgb
 from PIL import Image,ImageDraw,ImageFont
 logging.basicConfig(level=logging.DEBUG)
 
-try:
-    disp = OLED_1in5_rgb.OLED_1in5_rgb()
+class Oled():
+    def __init__(self):
+        try:
+            self.disp = OLED_1in5_rgb.OLED_1in5_rgb()
 
-    logging.info("\r 1.5inch rgb OLED ")
-    # Initialize library.
-    disp.Init()
-    # Clear display.
-    logging.info("clear display")
-    disp.clear()
+            logging.info("\r 1.5inch rgb OLED ")
+            # Initialize library.
+            self.disp.Init()
+            # Clear display.
+            logging.info("clear display")
+            self.disp.clear()
+        except IOError as e:
+            logging.info(e)
 
-    logging.info ("***draw image")
-    Himage2 = Image.new('RGB', (disp.width, disp.height), 0)  # 0: clear the frame
-    png = Image.open(os.path.join('signs/pic', 'speed-80.png'))
-    Himage2.paste(png.resize((disp.width-20, disp.height-20)), (10,10))
-    Himage2=Himage2.rotate(0) 	
-    disp.ShowImage(disp.getbuffer(Himage2)) 
-    time.sleep(10)    
+    def __del__():
+        self.disp.module_exit()
 
-    disp.clear()
+    def display(self, speed):
 
-except IOError as e:
-    logging.info(e)
-    
-except KeyboardInterrupt:    
-    logging.info("ctrl + c:")
-    disp.module_exit()
-    exit()
+        self.disp.clear()
+
+        try:
+            logging.info ("***draw image")
+            Himage2 = Image.new('RGB', (self.disp.width, self.disp.height), 0)  # 0: clear the frame
+            png = Image.open(os.path.join('pic', f'speed-{speed}.png'))
+            Himage2.paste(png.resize((self.disp.width-20, self.disp.height-20)), (10,10))
+            Himage2=Himage2.rotate(0) 	
+            self.disp.ShowImage(self.disp.getbuffer(Himage2)) 
+            time.sleep(10)    
+        except IOError as e:
+            logging.info(e)
+            
+    def clear(self):
+        self.disp.clear()
