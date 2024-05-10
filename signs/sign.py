@@ -35,7 +35,6 @@ class Oled():
             Himage2.paste(png.resize((self.disp.width-20, self.disp.height-20)), (10,10))
             Himage2=Himage2.rotate(0) 	
             self.disp.ShowImage(self.disp.getbuffer(Himage2)) 
-            time.sleep(10)    
         except IOError as e:
             logging.info(e)
             
