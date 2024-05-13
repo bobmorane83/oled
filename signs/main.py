@@ -12,10 +12,16 @@ def sign():
     oled.display(int(speed))
     return f"Sign : {speed}"
 
+@app.route('/display', methods=['POST'])
+def display():
+    file = request.files['image']
+    oled.photo(file)
+    return f"Displayed"
+
 @app.route("/clear", methods=['GET'])
 def clear():
     oled.clear()
     return f"Clear"
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0')
+    app.run(host='0.0.0.0', port=5001)
