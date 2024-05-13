@@ -31,7 +31,7 @@ class Oled():
             logging.info ("***draw image")
             Himage2 = Image.new('RGB', (self.disp.width, self.disp.height), 0)  # 0: clear the frame
             png = Image.open(data)
-            Himage2.paste(png.resize((self.disp.width-20, self.disp.height-20)), (10,10))
+            Himage2.paste(png.resize((self.disp.width, self.disp.height)), (0,0))
             Himage2=Himage2.rotate(0) 	
             self.disp.ShowImage(self.disp.getbuffer(Himage2)) 
         except IOError as e:
